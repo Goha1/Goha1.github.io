@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,900&family=Hind+Siliguri:wght@600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: helvetica, sans-serif;
+  margin: 0 auto;
+  max-width: 600px;
+  background: #DEB887;
+}
+div {
+  height: 200px;
+  background-size: cover;
+  position: relative;
+  margin: 40px 0 0 0;
+  border-radius: 12px;
+}
+h1 {
+font-family: 'Pacifico', cursive;
+  text-align: center;
+  font-size: 75px;
+  color: #FFF8DC;
+  margin: 60px 0 0 0;
+}
+h2 {
+  text-align: center;
+  color: #FFF8DC;
+  margin: 0px 0 70px 0;
+  font-family: 'Exo 2', sans-serif;
+}
+p {
+  color: rgb(255,248,220);
+  background: black;
+  background: linear-gradient(bottom, rgba(225,225,255,1), rgba(0,0,0,.4));
+  background: -webkit-linear-gradient(bottom, rgba(225,225,255,1), rgba(0,0,0,.4));
+  background: -moz-linear-gradient(bottom, rgba(225,225,255,1), rgba(0,0,0,.4));
+  padding: 10px;
+  line-height: 28px;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  height: 30px;
+  transition: height .5s;
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+  font-family: 'Satisfy', cursive;
+}
+
+small {
+  opacity: 0;
+}
+
+.show-description p {
+  height: 150px;
+}
+
+.show-description small {
+  opacity: 1;
+}
+
+.first{
+  background-image: url("https://iamafoodblog.b-cdn.net/wp-content/uploads/2021/02/how-to-cook-steak-1061w.jpg");
+}
+.second{
+  background-image: url("https://www.jessicagavin.com/wp-content/uploads/2023/01/BBQ-chicken-wings-21-1200.jpg");
+}
+.dessert{
+  background-image: url("https://www.foodiecrush.com/wp-content/uploads/2022/06/Baby-Back-Ribs-foodiecrush.com-3726.jpg");
+}
+.price {
+  float: right;
+}
+input {
+	font-size: 22px;
+}
+
+@media (max-width: 500px) {
+  h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    line-height: 40px;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 20px 0 30px 0;
+  }
+  div {
+    margin: 20px 12px 0 12px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  small {
+    font-size: 16px;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+<h1>Leslie's restaurant</h1>
+<h2>A Filipino Eatery</h2>
+<div class="first">
+	<input class="quantities" type="number" min="0" style="width: 50px">
+  <p>Steak <span class="price">$14</span><br />
+  <small>Mustard sierra leone bologi kale chard beet greens black-eyed pea sorrel amaranth garlic tigernut spring onion summer purslane asparagus lentil. </small></p>
+</div>
+
+<div class="second">
+	<input class="quantities" type="number" min="0" style="width: 50px">
+  <p>Chicken <span class="price">$22</span><br />
+  <small>Tri-tip capicola kielbasa salami brisket chicken rump strip steak drumstick. Meatloaf chuck boudin ribeye pork jowl. Andouille bacon jowl meatloaf pork loin prosciutto bresaola.</small></p>
+</div>
+  
+<div class="dessert">
+	<input class="quantities" type="number" min="0" style="width: 50px">
+  <p>Barbeque Ribs <span class="price">$16</span><br />
+  <small>Lollipop tart cotton candy jelly-o carrot cake apple pie cupcake. Jelly-o bear claw ice cream candy canes.</small></p>
+</div>
+<br><br>
+	  <input id="Name" placeholder="Your name">
+	 <input id="Email" placeholder="Your email">
+  <input id="submit" type="submit">
+	<br><br>
+<script>
+  $('div').on('click', function() {
+      $(this).toggleClass('show-description');
+  });
+</script>
+
+<script type="module">
+	import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyC8poFq7Uo9gdio-aALHBLof6fpshSMAJY",
+    authDomain: "goha-101d8.firebaseapp.com",
+    projectId: "goha-101d8",
+    storageBucket: "goha-101d8.appspot.com",
+    messagingSenderId: "680114744523",
+    appId: "1:680114744523:web:1b25c2aaace2b1c4003f4e"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const Name = document.querySelector("#Name") 
+const Email = document.querySelector("#Email")
+document.querySelector('#submit').addEventListener('click', Submit)
+const quantities = document.querySelectorAll(".quantities") 
+const itemsList = ["Steak", "Chicken", "Barbeque Ribs"]
+const prices = document.querySelectorAll(".price") 
+
+		function Submit() {
+			  const timestamp = buildTimestamp()
+			let total = 0
+		  let cart = { }
+
+		  for  (let i=0; i<quantities.length; i=i+1) {
+		  	if (quantities[i].value != "0" && quantities[i].value != "") {	
+			    let price = prices[i].innerHTML.replace('$', '')
+			    total = total + quantities[i].value * price 
+		  		cart[itemsList[i]] = parseInt(quantities[i].value) 
+		  	}
+		  	quantities[i].value = ""
+		  }
+	  
+			  set(ref(db, timestamp), {
+				  Name: Name.value,
+			      email: Email.value,
+									cart: cart,
+ totalPrice: total,
+		  paid: "not yet",
+					
+			  });
+
+			  Name.value = ""
+			  Email.value = ""
+
+			}
+		
+					function buildTimestamp() {
+						  const now = new Date();
+						  let timestamp = now.getFullYear().toString() + "/";
+						  //const month = now.toLocaleString('default', { month: 'long' });
+
+						  let month = now.getMonth()+1   //add 1 because Javascript uses 0 for January
+						  month = month.toString()
+						  month = addLeadingZero(month)
+						  timestamp += month + "/"; 
+
+						  let date = now.getDate().toString()
+						  date = addLeadingZero(date)
+						  timestamp += date + "/";
+
+						  let hours = now.getHours().toString()
+						  hours = addLeadingZero(hours)
+						  timestamp += hours + ":";
+
+						  let minutes = now.getMinutes().toString()
+						  minutes = addLeadingZero(minutes)
+						  timestamp += minutes + ":";
+
+						  let seconds = now.getSeconds().toString()
+						  seconds = addLeadingZero(seconds)
+						  timestamp += seconds;
+  
+						  return timestamp
+						}
+	
+						function addLeadingZero(units) {
+							if (units.length < 2) {
+								units = "0" + units
+							}
+							return units
+						}
+  </script>
+</body>
